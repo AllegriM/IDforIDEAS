@@ -1,31 +1,12 @@
 const { Router } = require("express");
-const { Product } = require("../db");
+const {  getAllProducts,findProduct,createProduct,editProduct,deleteProduct} = require('../controllers/Product')
 
 const router = Router();
 
-router.post("/create", async (req, res, next) => {
-  const { name,description,price,stock } = req.body;
-
-  try {
-    const newProduct = await Product.create({ name,description,price,stock });
-    return res.send(newProduct);
-  } catch (error) {
-    next(error);
-  }
-});
-
-
-router.get("/view/:idProduct", async (req, res, next) => {
-  let { idProduct } = req.params;
-  try {
-    const productFound = await Product.findByPk(idProduct);
-    if (!productFound) {
-        return res.status(404).json({"message":"Product not found"})
-    }
-    return res.status(200).send(productFound);
-  } catch (error) {
-    next(error);
-  }
-});
+router.get("/all", getAllProducts)
+router.get("/view/:idProduct",findProduct)
+router.post("/create",createProduct)
+router.put("/edit/:idProduct",editProduct)
+router.delete("/delete/:idProduct",deleteProduct)
 
 module.exports = router;
