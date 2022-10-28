@@ -1,6 +1,6 @@
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-
+const path = require("path")
 //Metadata info about out API
 
 const options = {
@@ -10,7 +10,7 @@ const options = {
         title: "Pizzeria API", 
         version: "1.0.0" },
   },
-  apis: ["./routes/*.js"],
+  apis: [path.join(__dirname,"./routes/*.js")]
 };
 
 //Docs on JSON format
@@ -19,7 +19,7 @@ const swaggerSpec = swaggerJSDoc(options);
 //Function to setup out docs
 const swaggerDocs = (app, port) => {
   app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  app.get("/api/focs.json", (req, res) => {
+  app.get("/api/docs.json", (req, res) => {
     res.json(swaggerSpec);
   });
 
