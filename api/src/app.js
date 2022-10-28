@@ -3,14 +3,14 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 require('./db.js');
+const {swaggerDocs} = require("./swagger")
 const user = require('./routes/User');
 const product = require('./routes/Product');
 const server = express();
 
-server.name = 'API';
-//swagger
-
-
+//swagger API
+let port = process.env.PORT || 3001
+swaggerDocs(server,port)
 
 
 //middlewares
@@ -18,6 +18,7 @@ server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser()); 
 server.use(morgan('dev'));
+
 
 //cors
 server.use((req, res, next) => {
@@ -31,9 +32,7 @@ server.use((req, res, next) => {
 //routes
 server.use('/user',user)
 server.use('/product',product)
-server.use('/', (req,res) => {
-  return res.status(404).send({error: "Please, Check your route"})
-}); 
+ 
 
 
 // Error catching endware.
