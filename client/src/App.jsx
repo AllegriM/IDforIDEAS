@@ -10,7 +10,7 @@ function App() {
         <Route exact path="/" element={<Login/>} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

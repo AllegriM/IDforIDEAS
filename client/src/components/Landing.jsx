@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export default function Landing() {
   return (
@@ -8,5 +8,5 @@ export default function Landing() {
         <button>Home</button>
       </Link>
     </div>
-  )
+  );
 }
