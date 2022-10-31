@@ -13,7 +13,7 @@ const registerUser = async (req, res, next) => {
   try {
     password = await bcrypt.hash(password, 13);
     const newUser = await User.create({ email, password, isAdmin });
-    return res.send(newUser);
+    return res.status(201).send({email:newUser.email,isAdmin:newUser.isAdmin});
   } catch (error) {
     next(error);
   }
@@ -28,14 +28,14 @@ const loginUser = async (req, res, next) => {
       return res.status(404).json({ message: "Email not found" });
     }
     const isValid = await bcrypt.compare(password, userFound.password);
-    if (!isValid) return res.status(400).json({ message: "Invalid Password" });
+    if (!isValid) return res.status(400).json({ messsage: "Invalid Password" });
 
     const accesToken = generateAccessToken(userFound);
     return res.status(200).json({
       email: userFound.email,
       isAdmin: userFound.isAdmin,
       accessToken: accesToken,
-    });
+  });
   } catch (error) {
     next(error);
   }
@@ -48,10 +48,10 @@ const resetPassword = async (req, res, next) => {
     let userFound = await User.findByPk(email);
     if (userFound) {
       await userFound.set({ password });
-      productFound.save();
-      return res.json({ result: productFound });
+      userFound.save();
+      return res.status(200).json({message:"Password changed"});
     }
-    return res.json({ result: "Product Not Found" });
+    return res.status(404).json({ message: "Email Not Found" });
   } catch (error) {
     next(error);
   }
@@ -59,8 +59,8 @@ const resetPassword = async (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
   try {
-    let allUsers = await User.findAll();
-    return res.json({ result: allUsers });
+    let allUsers = await User.findAll({attributes: ["email","isAdmin"]});
+    return res.status(200).send(allUsers);
   } catch (error) {
     next(error);
   }
