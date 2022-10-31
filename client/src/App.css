@@ -1,48 +1,54 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100vh;
+  height: 100%;
 }
 
-.emailInput{
-background-color: whitesmoke;
-border-radius: 3px;
-width: 300px;
-height: 35px;
-}   
-
-.passwordInput{
+.emailInput {
+  background-color: whitesmoke;
   border-radius: 3px;
-  background-color: whitesmoke; 
   width: 300px;
-height: 35px;
+  height: 35px;
 }
 
-.divMayorLogin{
- width: 400px;
- height: 500px; 
- background-color: rgb(28, 27, 27);
- display: flex;
- justify-content: center;
- align-items: center;
- border-radius: 3px;
+.passwordInput {
+  border-radius: 3px;
+  background-color: whitesmoke;
+  width: 300px;
+  height: 35px;
 }
 
-.pizzaimg{
-justify-content: center;
-align-items: center;
-display: flex;
+.container-login {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.divHijoLogin{
- margin: 0px auto; 
+.divMayorLogin {
+  width: 400px;
+  height: 500px;
+  background-color: rgb(28, 27, 27);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
 }
 
-.botonLogin{
- background-color: rgb(222, 182, 110);
+.pizzaimg {
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
-.registerP{
- color: brown; 
+.divHijoLogin {
+  margin: 0px auto;
+}
+
+.botonLogin {
+  background-color: rgb(222, 182, 110);
+}
+
+.registerP {
+  color: brown;
 }
