@@ -32,6 +32,9 @@ server.use((req, res, next) => {
 //routes
 server.use('/user',user)
 server.use('/product',product)
+server.use('/',(req,res) => {
+  return res.json({"message":"please cheack your route"})
+})
  
 
 
