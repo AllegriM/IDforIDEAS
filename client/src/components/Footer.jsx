@@ -17,8 +17,8 @@ function Footer() {
             className="flex flex-col items-center mb-2"
           >
             <Github />
+            Check our project!
           </a>
-          Check our project!
         </div>
       </div>
     </div>
